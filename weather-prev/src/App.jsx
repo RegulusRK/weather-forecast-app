@@ -1,34 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef } from 'react'
+import axios from 'axios'
 import './App.css'
+import WeatherInformations from './components/weatherInformations/weatherInfo';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [weather, setWeather] = useState()
+  const inputRef = useRef();
+
+  async function searchCity(){
+    const city = inputRef.current.value;
+    const key = "7c242d0b7f4e3f845444cc5b2df539a8"
+    
+    const url = `https://apihttps://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}}.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}&lang=pt_br&units=metric`
+    const apiInfo= await axios.get(url);
+    setWeather(apiInfo.data);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Weather Forecast</h1>
+      <input ref={inputRef} type="text" placeholder='Digite o nome da cidade' />
+      <button onClick={searchCity}>Buscar</button>
+
+      {weather && <WeatherInformations weather={weather} />}
+
+    </div>
   )
 }
 
