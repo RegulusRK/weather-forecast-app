@@ -1,0 +1,108 @@
+.weather-container {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: var(--space-lg);
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.weather-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+}
+
+.weather-container h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+
+.weather-main img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: var(--space-sm);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  text-transform: capitalize;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-md);
+}
+
+.details p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details p strong {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-top: var(--space-xs);
+  font-weight: 600;
+}
+
+/* Animation for weather data update */
+@keyframes weatherUpdate {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.weather-container.update {
+  animation: weatherUpdate 0.4s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weather-container {
+    padding: var(--space-md);
+  }
+  
+  .weather-main img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .temperature {
+    font-size: 2rem;
+  }
+  
+  .details {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+}
