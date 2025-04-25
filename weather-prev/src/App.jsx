@@ -13,7 +13,6 @@ function App() {
   
   const inputRef = useRef();
 
-  // Apply dark mode class to body
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -22,7 +21,7 @@ function App() {
     }
   }, [darkMode]);
 
-  // Check system preference for dark mode on initial load
+
   useEffect(() => {
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkMode(prefersDarkMode);
